@@ -13,6 +13,38 @@ const EBLG = { lat:50.6374, lon:5.4432, runways:[
   { name:"22", heading:220 }
 ]};
 
+let runwayAxisLayer = null;
+
+function drawRunwayAxis(runwayName, phase) {
+  if (runwayAxisLayer) {
+    map.removeLayer(runwayAxisLayer);
+  }
+
+  // Coordonnées des seuils (à adapter si tu veux plus précis)
+  const RW22 = [50.64594, 5.44375];
+  const RW04 = [50.65480, 5.46530];
+
+  let start, end;
+
+  if (runwayName === "22") {
+    start = RW22;
+    end = RW04;
+  } else {
+    start = RW04;
+    end = RW22;
+  }
+
+  // Couleur selon phase
+  const color = (phase === "Décollage") ? "#f97316" : "#60a5fa";
+
+  runwayAxisLayer = L.polyline([start, end], {
+    color,
+    weight: 4,
+    opacity: 0.9,
+    dashArray: "10, 10"
+  }).addTo(map);
+}
+
 /* ----------------------------------------------------------
    SONOMÈTRES
 ---------------------------------------------------------- */
@@ -244,7 +276,7 @@ if (manual !== "auto") {
 }
 
 console.log("PHASE =", phase);
-
+drawRunwayAxis(rw.name, phase);
 
 document.getElementById("runway-info").textContent =
   `Piste ${rw.name} – ${phase}`;
