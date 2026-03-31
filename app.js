@@ -30,6 +30,25 @@ const SONOS = [
   { id:"F006", lat:50.609594, lon:5.271403 },
   { id:"F012", lat:50.621917, lon:5.254747 }
 ];
+const SONO_ADDRESSES = {
+    "F017": "Rue de la Pommeraie, 4690 Wonck, Belgique",
+    "F001": "Rue Franquet, Houtain",
+    "F014": "Rue Léon Labaye, Juprelle",
+    "F015": "Rue du Brouck, Juprelle",
+    "F005": "Rue Caquin, Haneffe",
+    "F003": "Rue Fond Méan, Saint-Georges",
+    "F011": "Rue Albert 1er, Saint-Georges",
+    "F008": "Rue Warfusée, Saint-Georges",
+    "F002": "Rue Noiset, Saint-Georges",
+    "F007": "Rue Yernawe, Saint-Georges",
+    "F009": "Bibliothèque Communale, Place Verte 4470 Stockay",
+    "F004": "Vinâve des Stréats, Verlaine",
+    "F010": "Rue Haute Voie, Verlaine",
+    "F013": "Rue Bois Léon, Verlaine",
+    "F016": "Rue de Chapon-Seraing, Verlaine",
+    "F006": "Rue Bolly Chapon, Seraing",
+    "F012": "Rue Barbe d'Or, 4317 Aineffe"
+};
 
 let sonometers = {};
 let map;
