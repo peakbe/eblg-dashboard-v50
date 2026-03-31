@@ -148,29 +148,30 @@ function drawRunway(runway) {
     const r = RUNWAYS[runway];
     if (!r) return;
 
+    // Récupération des coordonnées
     const [lat1, lng1] = r.start;
     const [lat2, lng2] = r.end;
 
-    // vecteur piste
+    // Vecteur piste
     const dx = lng2 - lng1;
     const dy = lat2 - lat1;
 
-    // vecteur perpendiculaire normalisé
+    // Vecteur perpendiculaire normalisé
     const len = Math.sqrt(dx*dx + dy*dy);
     const px = -(dy / len);
     const py = dx / len;
 
-    // largeur piste en degrés approximatifs
+    // Conversion mètres → degrés
     const meterToDeg = 1 / 111320;
     const halfW = (r.width_m * meterToDeg) / 2;
 
-    // points latéraux
+    // Points latéraux
     const p1L = [lat1 + py * halfW, lng1 + px * halfW];
     const p1R = [lat1 - py * halfW, lng1 - px * halfW];
     const p2L = [lat2 + py * halfW, lng2 + px * halfW];
     const p2R = [lat2 - py * halfW, lng2 - px * halfW];
 
-    // rectangle piste
+    // Rectangle de piste
     L.polygon([p1L, p1R, p2R, p2L], {
         color: "#222",
         weight: 1,
@@ -178,14 +179,14 @@ function drawRunway(runway) {
         fillOpacity: 0.9
     }).addTo(runwayLayer);
 
-    // centerline
+    // Centerline
     L.polyline([r.start, r.end], {
         color: "#fff",
         weight: 2,
         dashArray: "8,8"
     }).addTo(runwayLayer);
 
-    // numéros de piste
+    // Numéros de piste
     const num1 = (r.heading / 10).toFixed(0).padStart(2, "0");
     const num2 = (((r.heading + 180) % 360) / 10).toFixed(0).padStart(2, "0");
 
